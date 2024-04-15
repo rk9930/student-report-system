@@ -19,4 +19,7 @@ MAIL_PASSWORD= ``` inside .env file
    php artisan serve
    ```
 7) visit the path http://127.0.0.1:8000 for homepage of the project
+8) To check mail you can visit : ```https://mailtrap.io/inboxes ``` after clicking on My Inbox. You can see the mail of the report.
+   ![image](https://github.com/rk9930/student-report-system/assets/79439746/32e9b210-d15b-484c-a2b3-9c93bd978219)
+
 
