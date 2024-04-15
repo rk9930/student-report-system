@@ -6,7 +6,7 @@ Steps to run the project:
 3) create a database name as student_system for testing the inbox mail
 
 4) login to [mailtrap.com](https://mailtrap.io/signin) and get username and password
-   ![image](https://github.com/rk9930/student-report-system/assets/79439746/7085d808-5ad5-468d-beaa-c0b7cdaf3e60)
+   ![image](https://github.com/rk9930/student-report-system/assets/79439746/8cc8a2fd-1e81-4649-8e6b-e5d497fbb980)
 
 5) use username and password at : ```MAIL_USERNAME=
 MAIL_PASSWORD= ``` inside .env file
