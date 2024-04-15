@@ -13,6 +13,7 @@ MAIL_PASSWORD= ``` inside .env file
 
 6) run the below commands :
    ```
+   composer install
    php artisan key:generate
    php artisan migrate
    php artisan serve
