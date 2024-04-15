@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\StudentReports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
-use Symfony\Component\Console\Input\Input;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 
@@ -71,9 +69,6 @@ class StudentReportsController extends Controller
         }
 
         try {
-            //code...
-
-
             $scores = [
                 'English' => (int)$request->english_marks,
                 'Hindi' => (int)$request->hindi_marks,
@@ -99,10 +94,6 @@ class StudentReportsController extends Controller
                 default:
                     $grade =  "Fail";
             }
-
-
-
-
             $report_data = [
                 'student_id' => $request->student_id,
                 'first_name' => $request->first_name,
@@ -115,22 +106,13 @@ class StudentReportsController extends Controller
                 'grade' => $grade ?? NULL,
                 'remarks' => $request->remarks ?? NULL,
             ];
-
-            // dd($request->all(), $report_data);
-
             DB::beginTransaction();
-
             $report = StudentReports::create($report_data);
-
-
-            // dd("report created ");
             DB::commit();
             return redirect('/report-cards/' . $report->id);
         } catch (\Throwable $e) {
             DB::rollBack();
-            // dd($e->getMessage());
             return redirect('/create-reports')->withErrors($e->getMessage())->withInput($request->input());
-            //throw $th;
         }
     }
 
@@ -171,9 +153,6 @@ class StudentReportsController extends Controller
         }
 
         try {
-            //code...
-
-
             $scores = [
                 'English' => (int)$request->english_marks,
                 'Hindi' => (int)$request->hindi_marks,
@@ -199,10 +178,6 @@ class StudentReportsController extends Controller
                 default:
                     $grade =  "Fail";
             }
-
-
-
-
             $report_data = [
                 'student_id' => $request->student_id,
                 'first_name' => $request->first_name,
@@ -215,22 +190,13 @@ class StudentReportsController extends Controller
                 'grade' => $grade ?? NULL,
                 'remarks' => $request->remarks ?? NULL,
             ];
-
-            // dd($request->all(), $report_data);
-
             DB::beginTransaction();
-
             $report = StudentReports::where('id', $record_id)->update($report_data);
-
-
-            // dd("report created ");
             DB::commit();
             return redirect('/report-cards/' . $record_id);
         } catch (\Throwable $e) {
             DB::rollBack();
-            // dd($e->getMessage());
             return redirect('/edit-reports/' . $record_id)->withErrors($e->getMessage())->withInput($request->input());
-            //throw $th;
         }
     }
 
@@ -246,7 +212,6 @@ class StudentReportsController extends Controller
         }
         $scoresData = (array)json_decode($report_card_data->scores) ?? [];
         $personal_data = (array)json_decode(json_encode($report_card_data)) ?? [];
-        // dd($scoresData);
         return view('studentReports.report-card', compact('personal_data', 'scoresData'));
     }
 
